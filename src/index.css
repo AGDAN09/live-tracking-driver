@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 20% 98%;
+    --foreground: 215 28% 14%;
+    --card: 0 0% 100%;
+    --card-foreground: 215 28% 14%;
+    --primary: 215 28% 14%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 210 20% 94%;
+    --secondary-foreground: 215 28% 14%;
+    --muted: 210 20% 94%;
+    --muted-foreground: 215 12% 42%;
+    --accent: 38 95% 52%;
+    --accent-foreground: 215 28% 14%;
+    --destructive: 0 72% 50%;
+    --border: 214 20% 87%;
+    --ring: 215 28% 14%;
+    --radius: 0.75rem;
+  }
+  * { @apply border-border; }
+  html, body, #root { height: 100%; }
+  body { @apply bg-background text-foreground font-sans antialiased; margin: 0; }
+}
+
+/* ---------- Leaflet markers ---------- */
+.marker-user {
+  width: 18px; height: 18px; border-radius: 9999px;
+  background: #0e7490; border: 3px solid #fff;
+  box-shadow: 0 0 0 1px rgba(15, 23, 42, .25);
+  position: relative;
+}
+.marker-user::after {
+  content: ""; position: absolute; inset: -3px; border-radius: 9999px;
+  border: 2px solid #0e7490; opacity: 0;
+  animation: ping 2s ease-out infinite;
+}
+.marker-driver {
+  width: 38px; height: 38px; border-radius: 9999px;
+  background: #f59e0b; border: 3px solid #1e293b;
+  display: grid; place-items: center; font-size: 18px;
+  box-shadow: 0 4px 10px rgba(15, 23, 42, .35);
+}
+@keyframes ping {
+  0% { transform: scale(.8); opacity: .8; }
+  100% { transform: scale(2.4); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .marker-user::after { animation: none; }
+}
+.leaflet-container { font-family: inherit; }
